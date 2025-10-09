@@ -1,7 +1,7 @@
 with Ada.Command_Line;      use Ada.Command_Line;
 with Swan_Ada.String_Tools; use Swan_Ada.String_Tools;
 
-package body Swan_Ada.Argparse is
+package body Swan_Ada.Arg_Parser is
 
    procedure Init_Context (Self : in out Argument_Context) is
       Arg_C : Natural;
@@ -233,4 +233,4 @@ package body Swan_Ada.Argparse is
       return To_String (Self.Pos_Args.Element (Pos));
    end Get_Positional_Arg;
 
-end Swan_Ada.Argparse;
+end Swan_Ada.Arg_Parser;

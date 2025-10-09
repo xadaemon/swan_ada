@@ -3,7 +3,7 @@ with Ada.Containers.Indefinite_Hashed_Maps;
 with Ada.Strings.Hash;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 
-package Swan_Ada.Argparse is
+package Swan_Ada.Arg_Parser is
    type Argument_Type is (Str, Num, Bool, Hex_Num);
 
    type Argument_Def is record
@@ -102,4 +102,4 @@ package Swan_Ada.Argparse is
    function Get_Positional_Arg
      (Self : in out Argument_Context; Pos : Natural) return String;
 
-end Swan_Ada.Argparse;
+end Swan_Ada.Arg_Parser;
