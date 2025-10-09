@@ -23,6 +23,7 @@ package body Swan_Ada.Collections.Test is
       end loop;
 
       Assert (Data = Data_Out, "FIFO Ordering");
+      Assert (Check_Is_Empty (Test_CB), "Shows as empty after all items are read");
    end Test_Circular_Buffers;
 
    overriding
