@@ -1,6 +1,6 @@
 generic
    type TFloat is digits <>;
-package Swan_Ada.Control.PID is
+package Swan_Ada.Control.PID with SPARK_Mode => On is
    type PID_Controller is limited private;
 
    procedure Set_Point (Controller : in out PID_Controller; V : TFloat);
@@ -11,13 +11,15 @@ package Swan_Ada.Control.PID is
 
    procedure Set_Kd (Controller : in out PID_Controller; V : TFloat);
 
-   function Tick
-     (Controller : in out PID_Controller; Process_Value, DT : TFloat)
-      return TFloat;
+   procedure Tick
+     (Controller        : in out PID_Controller;
+      Process_Value, DT : TFloat;
+      Pv_Out            : out TFloat);
 
-   function Tick_PD
-     (Controller : in out PID_Controller; Process_Value, DT : TFloat)
-      return TFloat;
+   procedure Tick_PD
+     (Controller        : in out PID_Controller;
+      Process_Value, DT : TFloat;
+      Pv_Out            : out TFloat);
 
 private
    type PID_Controller is record

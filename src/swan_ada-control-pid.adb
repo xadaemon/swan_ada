@@ -1,4 +1,6 @@
-package body Swan_Ada.Control.PID is
+package body Swan_Ada.Control.PID
+  with SPARK_Mode => On
+is
 
    procedure Set_Point (Controller : in out PID_Controller; V : TFloat) is
    begin
@@ -20,9 +22,10 @@ package body Swan_Ada.Control.PID is
       Controller.Kd := V;
    end Set_Kd;
 
-   function Tick
-     (Controller : in out PID_Controller; Process_Value, DT : TFloat)
-      return TFloat
+   procedure Tick
+     (Controller        : in out PID_Controller;
+      Process_Value, DT : TFloat;
+      Pv_Out            : out TFloat)
    is
       Error   : constant TFloat := Process_Value - Controller.Set_Point;
       P, I, D : TFloat;
@@ -32,20 +35,21 @@ package body Swan_Ada.Control.PID is
       D := Controller.Kd * (Error - Controller.Prev_Err) / DT;
       Controller.Prev_Err := Error;
       Controller.It := Controller.It + I;
-      return P + Controller.It + D;
+      Pv_Out := P + Controller.It + D;
    end Tick;
 
-   function Tick_PD
-     (Controller : in out PID_Controller; Process_Value, DT : TFloat)
-      return TFloat
+   procedure Tick_PD
+     (Controller        : in out PID_Controller;
+      Process_Value, DT : TFloat;
+      Pv_Out            : out TFloat)
    is
-      Error   : constant TFloat := Process_Value - Controller.Set_Point;
-      P, D : TFloat;
+      Error : constant TFloat := Process_Value - Controller.Set_Point;
+      P, D  : TFloat;
    begin
       P := Controller.Kp * Error;
       D := Controller.Kd * (Error - Controller.Prev_Err) / DT;
       Controller.Prev_Err := Error;
-      return P + D;
+      Pv_Out := P + D;
    end Tick_PD;
 
 end Swan_Ada.Control.PID;
