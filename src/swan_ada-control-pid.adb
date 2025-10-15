@@ -27,7 +27,7 @@ is
       Process_Value, DT : T_Float;
       Pv_Out            : out T_Float)
    is
-      Error   : constant T_Float := Process_Value - Controller.Set_Point;
+      Error   : constant T_Float := Controller.Set_Point - Process_Value;
       P, I, D : T_Float;
    begin
       P := Controller.Kp * Error;
@@ -43,7 +43,7 @@ is
       Process_Value, DT : T_Float;
       Pv_Out            : out T_Float)
    is
-      Error : constant T_Float := Process_Value - Controller.Set_Point;
+      Error : constant T_Float := Controller.Set_Point - Process_Value;
       P, D  : T_Float;
    begin
       P := Controller.Kp * Error;

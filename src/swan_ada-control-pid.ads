@@ -2,7 +2,7 @@ generic
    type T_Float is digits <>;
 package Swan_Ada.Control.PID with SPARK_Mode => On is
    type PID_Controller is limited private;
-	type PID_Controller_Access is access PID_Controller;
+   type PID_Controller_Access is access PID_Controller;
 
    procedure Set_Point (Controller : in out PID_Controller; V : T_Float);
 

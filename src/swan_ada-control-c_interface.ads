@@ -9,7 +9,7 @@ package Swan_Ada.Control.C_Interface is
    type PID_Double is record
       Inner : PID_Inst.PID_Controller_Access;
    end record
-   with Export => True, Convention => C, External_Name => "pid_t";
+   with Export => True, Convention => C, External_Name => "pid_";
    type PID_Double_Access is access PID_Double;
 
    function Init_PID return PID_Double_Access
