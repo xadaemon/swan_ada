@@ -19,3 +19,6 @@ jobs:
 
     - name: Build
       run: alr build
+    
+    - name: Run tests
+      run: (cd tests; alr run)

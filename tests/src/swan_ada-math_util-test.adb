@@ -1,4 +1,5 @@
 with AUnit.Assertions; use AUnit.Assertions;
+with Swan_Ada.Math_Util.Calculus;
 
 package body Swan_Ada.Math_Util.Test is
 
