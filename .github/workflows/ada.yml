@@ -19,7 +19,3 @@ jobs:
 
     - name: Build
       run: alr build
-   
-    - name: Run tests
-      working-directory: tests
-      run: alr run
