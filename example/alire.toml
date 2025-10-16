@@ -1,0 +1,12 @@
+name = "example"
+description = ""
+version = "0.1.0-dev"
+
+authors = ["Matheus Xavier"]
+maintainers = ["Matheus Xavier <mxavierdev@gmail.com>"]
+maintainers-logins = ["xadaemon"]
+licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
+website = ""
+tags = []
+
+executables = ["example"]
