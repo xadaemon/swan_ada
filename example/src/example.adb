@@ -1,9 +1,9 @@
 with Ada.Text_IO; use Ada.Text_IO;
-with Swan_Ada.Loop_Control;
+with Swan.Loop_Control;
 
 procedure Example is
    package Loop_Ctrl is new
-     Swan_Ada.Loop_Control (T_DT => Float, T_User_State => Integer);
+     Swan.Loop_Control (T_DT => Float, T_User_State => Integer);
    use Loop_Ctrl;
 
    procedure Print_DT (Dt : Float; Manager : Loop_Manager_Access) is

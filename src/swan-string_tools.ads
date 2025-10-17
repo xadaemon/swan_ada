@@ -1,4 +1,4 @@
-package Swan_Ada.String_Tools is
+package Swan.String_Tools is
 
    function Starts_With (Source, Pattern : String) return Boolean;
    function Ends_With (Source, Pattern : String) return Boolean;
@@ -17,4 +17,4 @@ package Swan_Ada.String_Tools is
 
    function Hex_To_Ada_Notation (Hex : String) return String;
 
-end Swan_Ada.String_Tools;
+end Swan.String_Tools;

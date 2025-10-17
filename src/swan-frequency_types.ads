@@ -1,4 +1,4 @@
-package Swan_Ada.Frequency_Types is
+package Swan.Frequency_Types is
 
    type Frequency_Hz is new Float;
    type Frequency_Sec is new Float;
@@ -8,4 +8,4 @@ package Swan_Ada.Frequency_Types is
 
    function Sec_To_Ns (Frequency : Frequency_Sec) return Integer;
 
-end Swan_Ada.Frequency_Types;
+end Swan.Frequency_Types;

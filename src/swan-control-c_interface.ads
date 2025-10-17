@@ -1,8 +1,8 @@
 with Ada.Unchecked_Deallocation;
 with Interfaces.C; use Interfaces.C;
-with Swan_Ada.Control.PID;
+with Swan.Control.PID;
 
-package Swan_Ada.Control.C_Interface is
+package Swan.Control.C_Interface is
 
    package PID_Inst is new PID (T_Float => double);
    use PID_Inst;
@@ -36,4 +36,4 @@ private
        (Object => PID_Double,
         Name   => PID_Double_Access);
 
-end Swan_Ada.Control.C_Interface;
+end Swan.Control.C_Interface;

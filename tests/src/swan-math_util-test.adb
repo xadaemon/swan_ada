@@ -1,7 +1,7 @@
 with AUnit.Assertions; use AUnit.Assertions;
-with Swan_Ada.Math_Util.Calculus;
+with Swan.Math_Util.Calculus;
 
-package body Swan_Ada.Math_Util.Test is
+package body Swan.Math_Util.Test is
 
    procedure Arrange_Test is
       package Float_Calculus is new Calculus (T_Float => Float);
@@ -45,4 +45,4 @@ package body Swan_Ada.Math_Util.Test is
       Calculus_Test;
    end Run_Test;
 
-end Swan_Ada.Math_Util.Test;
+end Swan.Math_Util.Test;

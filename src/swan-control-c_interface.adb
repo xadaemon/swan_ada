@@ -1,4 +1,4 @@
-package body Swan_Ada.Control.C_Interface is
+package body Swan.Control.C_Interface is
    function Init_PID return PID_Double_Access is
       PID       : constant PID_Double_Access := new PID_Double;
       PID_Inner : PID_Controller;
@@ -34,4 +34,4 @@ package body Swan_Ada.Control.C_Interface is
       Tick (Controller.Inner, Process_Variable, DT, Value);
       return Value;
    end Tick_Inner;
-end Swan_Ada.Control.C_Interface;
+end Swan.Control.C_Interface;

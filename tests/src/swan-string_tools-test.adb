@@ -1,8 +1,8 @@
 with Ada.Text_IO;
 with AUnit.Assertions; use AUnit.Assertions;
-with Swan_Ada.Math_Util; use Swan_Ada.Math_Util;
+with Swan.Math_Util;   use Swan.Math_Util;
 
-package body Swan_Ada.String_Tools.Test is
+package body Swan.String_Tools.Test is
 
    procedure Test_Substr is
       TStr_1 : constant String := "--test--";
@@ -73,4 +73,4 @@ package body Swan_Ada.String_Tools.Test is
       Test_Hex_To_Ada_Notation;
    end Run_Test;
 
-end Swan_Ada.String_Tools.Test;
+end Swan.String_Tools.Test;

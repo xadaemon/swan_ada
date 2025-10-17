@@ -1,6 +1,6 @@
 generic
    type T_Float is digits <>;
-package Swan_Ada.Math_Util.Calculus is
+package Swan.Math_Util.Calculus is
    type Arrangement is array (Natural range <>) of T_Float;
    type T_Float_Array is array (Natural range <>) of T_Float;
 
@@ -22,4 +22,4 @@ package Swan_Ada.Math_Util.Calculus is
    generic
       with function Get_Point (T : T_Float) return T_Float;
    function Integral (Start, End_Point, DT : T_Float) return T_Float;
-end Swan_Ada.Math_Util.Calculus;
+end Swan.Math_Util.Calculus;

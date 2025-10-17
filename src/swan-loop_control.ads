@@ -1,10 +1,10 @@
-with Swan_Ada.Frequency_Types; use Swan_Ada.Frequency_Types;
+with Swan.Frequency_Types; use Swan.Frequency_Types;
 
 generic
    Max_Actions : Integer := 10;
    type T_Dt is digits <>;
    type T_User_State is private;
-package Swan_Ada.Loop_Control is
+package Swan.Loop_Control is
 
    type Loop_Manager is limited private;
    type Loop_Manager_Access is access Loop_Manager;
@@ -61,4 +61,4 @@ private
       User_state                         : T_User_State;
    end record;
 
-end Swan_Ada.Loop_Control;
+end Swan.Loop_Control;

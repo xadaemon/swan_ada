@@ -1,4 +1,4 @@
-package body Swan_Ada.Frequency_Types is
+package body Swan.Frequency_Types is
 
    function Hz_To_Sec (Frequency : Frequency_Hz) return Frequency_Sec
    is (Frequency_Sec (1.0 / Frequency));
@@ -8,4 +8,4 @@ package body Swan_Ada.Frequency_Types is
    function Sec_To_Ns (Frequency : Frequency_Sec) return Integer
    is (Integer (Float (Frequency) * Float (1e9)));
 
-end Swan_Ada.Frequency_Types;
+end Swan.Frequency_Types;

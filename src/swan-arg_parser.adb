@@ -1,7 +1,7 @@
-with Ada.Command_Line;      use Ada.Command_Line;
-with Swan_Ada.String_Tools; use Swan_Ada.String_Tools;
+with Ada.Command_Line;  use Ada.Command_Line;
+with Swan.String_Tools; use Swan.String_Tools;
 
-package body Swan_Ada.Arg_Parser is
+package body Swan.Arg_Parser is
 
    procedure Init_Context (Self : in out Argument_Context) is
       Arg_C : Natural;
@@ -60,16 +60,16 @@ package body Swan_Ada.Arg_Parser is
    is
    begin
       case Expected_Type is
-         when Str =>
+         when Str     =>
             return (Str, To_Unbounded_String (Str_Value));
 
-         when Num =>
+         when Num     =>
             return (Num, Integer'Value (Str_Value));
 
          when Hex_Num =>
             return (Hex_Num, Natural'Value (Hex_To_Ada_Notation (Str_Value)));
 
-         when Bool =>
+         when Bool    =>
             return (Bool, Boolean'Value (Str_Value));
       end case;
    end Arg_String_To_Val;
@@ -233,4 +233,4 @@ package body Swan_Ada.Arg_Parser is
       return To_String (Self.Pos_Args.Element (Pos));
    end Get_Positional_Arg;
 
-end Swan_Ada.Arg_Parser;
+end Swan.Arg_Parser;

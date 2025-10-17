@@ -1,5 +1,5 @@
 with "config/example_config.gpr";
-with "../swan_ada.gpr";
+with "../swan.gpr";
 
 project Example is
 

@@ -1,4 +1,4 @@
-package body Swan_Ada.Math_Util.Calculus is
+package body Swan.Math_Util.Calculus is
    function Arrange (DS, DE, DT : T_Float) return Arrangement is
       T        : T_Float := DS;
       Interval : Arrangement (0 .. Natural (DE / DT) - 1) := (others => <>);
@@ -70,4 +70,4 @@ package body Swan_Ada.Math_Util.Calculus is
 
       return Sum;
    end Integral;
-end Swan_Ada.Math_Util.Calculus;
+end Swan.Math_Util.Calculus;

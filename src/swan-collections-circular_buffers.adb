@@ -1,4 +1,4 @@
-package body Swan_Ada.Collections.Circular_Buffers is
+package body Swan.Collections.Circular_Buffers is
 
    procedure Write_Item (CB : in out Circular_Buffer; Item : T) is
       Next_Index : constant Integer := (CB.WriteI + 1) mod Max;
@@ -38,4 +38,4 @@ package body Swan_Ada.Collections.Circular_Buffers is
       return CB.ReadI = CB.WriteI;
    end Check_Is_Empty;
 
-end Swan_Ada.Collections.Circular_Buffers;
+end Swan.Collections.Circular_Buffers;

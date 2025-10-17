@@ -1,7 +1,7 @@
 with AUnit;
 with AUnit.Simple_Test_Cases;
 
-package Swan_Ada.Collections.Test is
+package Swan.Math_Util.Test is
 
    type Test is new AUnit.Simple_Test_Cases.Test_Case with null record;
 
@@ -11,4 +11,4 @@ package Swan_Ada.Collections.Test is
    overriding
    procedure Run_Test (T : in out Test);
 
-end Swan_Ada.Collections.Test;
+end Swan.Math_Util.Test;

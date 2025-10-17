@@ -1,4 +1,4 @@
-package body Swan_Ada.Control.PID
+package body Swan.Control.PID
   with SPARK_Mode => On
 is
 
@@ -52,4 +52,4 @@ is
       Pv_Out := P + D;
    end Tick_PD;
 
-end Swan_Ada.Control.PID;
+end Swan.Control.PID;

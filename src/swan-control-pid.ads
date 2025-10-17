@@ -1,6 +1,6 @@
 generic
    type T_Float is digits <>;
-package Swan_Ada.Control.PID with SPARK_Mode => On is
+package Swan.Control.PID with SPARK_Mode => On is
    type PID_Controller is private;
 
    procedure Set_Point (Controller : in out PID_Controller; V : T_Float);
@@ -27,4 +27,4 @@ private
       Kp, Kd                  : T_Float := 1.0;
       Ki                      : T_Float := 0.5;
    end record;
-end Swan_Ada.Control.PID;
+end Swan.Control.PID;

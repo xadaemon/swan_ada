@@ -2,7 +2,7 @@ generic
    Max : Positive;
    Allow_Overwrite : Boolean := False;
    type T is private;
-package Swan_Ada.Collections.Circular_Buffers is
+package Swan.Collections.Circular_Buffers is
 
    type Circular_Buffer is limited private;
    --  Simple circular buffer implementation, by default it will prevent
@@ -49,4 +49,4 @@ private
       ReadI, WriteI : Integer := Min;
    end record;
 
-end Swan_Ada.Collections.Circular_Buffers;
+end Swan.Collections.Circular_Buffers;

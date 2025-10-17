@@ -1,6 +1,6 @@
 with Ada.Real_Time; use Ada.Real_Time;
 
-package body Swan_Ada.Loop_Control is
+package body Swan.Loop_Control is
 
    procedure Set_Frequency
      (Manager : in out Loop_Manager; Frequency : Frequency_Hz) is
@@ -105,4 +105,4 @@ package body Swan_Ada.Loop_Control is
 
    end Run_Loop;
 
-end Swan_Ada.Loop_Control;
+end Swan.Loop_Control;

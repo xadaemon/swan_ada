@@ -1,7 +1,7 @@
-with Ada.Strings.Unbounded;            use Ada.Strings.Unbounded;
-with Swan_Ada.String_Tools.Exceptions; use Swan_Ada.String_Tools.Exceptions;
+with Ada.Strings.Unbounded;        use Ada.Strings.Unbounded;
+with Swan.String_Tools.Exceptions; use Swan.String_Tools.Exceptions;
 
-package body Swan_Ada.String_Tools is
+package body Swan.String_Tools is
 
    --  Check if the Source String starts with the Pattern
    function Starts_With (Source, Pattern : String) return Boolean is
@@ -35,7 +35,7 @@ package body Swan_Ada.String_Tools is
          return "";
       else
          case Dir is
-            when Left =>
+            when Left  =>
                Ret_Str :=
                  To_Unbounded_String
                    (Source (Source'First .. Source'First + Num - 1));
@@ -107,4 +107,4 @@ package body Swan_Ada.String_Tools is
       end if;
    end Hex_To_Ada_Notation;
 
-end Swan_Ada.String_Tools;
+end Swan.String_Tools;
