@@ -1,4 +1,5 @@
 {
-	"editor.tabSize": 3,
-	"editor.insertSpaces": true
+  "editor.tabSize": 3,
+  "editor.insertSpaces": true,
+  "sarif-viewer.connectToGithubCodeScanning": "off"
 }

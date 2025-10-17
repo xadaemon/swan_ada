@@ -14,7 +14,7 @@ package Swan_Ada.Loop_Control is
    type Tick_Count is mod 2**64;
 
    type Stop_State is record
-      Should_stop, Should_stop_Immediate : Boolean;
+      Should_Stop, Should_Stop_Immediate : Boolean;
    end record;
 
    Deviated_Over_Threshold, No_Action_At_Index, Action_Index_Error : exception;

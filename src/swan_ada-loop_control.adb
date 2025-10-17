@@ -60,27 +60,31 @@ package body Swan_Ada.Loop_Control is
    function Get_Frequency (Manager : Loop_Manager) return Frequency_Hz
    is (Manager.Frequency);
 
-   function Get_Stop_state (Manager : Loop_Manager) return Stop_State is
+   function Get_Stop_State (Manager : Loop_Manager) return Stop_State is
       State : Stop_State;
    begin
       State.Should_stop := Manager.Should_Stop;
       State.Should_stop_Immediate := Manager.Should_stop_Immediate;
       return State;
-   end Get_Stop_state;
+   end Get_Stop_State;
 
    procedure Run_Loop (Manager : Loop_Manager_Access) is
       Start_Time, End_Time : Time;
-      Dt                   : Duration;
+      Dt                   : Time_Span;
+      Dt_Duration          : Duration;
       Action               : Loop_Action;
+      Target_Span          : Time_Span :=
+        Nanoseconds (Sec_To_Ns (Manager.Target_DeltaT));
    begin
       Start_Time := Clock;
       Outer_Loop :
       loop
          End_Time := Clock;
-         Dt := To_Duration (End_Time - Start_Time);
+         Dt := End_Time - Start_Time;
+         Dt_Duration := To_Duration (Dt);
          exit Outer_Loop when Manager.Should_Stop;
 
-         if Frequency_Sec (Dt) < Manager.Target_DeltaT then
+         if Dt < Target_Span then
             goto Skip_Cycle;
          end if;
 
@@ -89,7 +93,7 @@ package body Swan_Ada.Loop_Control is
 
             Action := Manager.Actions (I);
             if Action /= null then
-               Action (T_Dt (Dt), Manager);
+               Action (T_Dt (Dt_Duration), Manager);
             end if;
          end loop;
 

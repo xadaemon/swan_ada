@@ -23,7 +23,7 @@ procedure Example is
    procedure Print_Bye (Dt : Float; Manager : Loop_Manager_Access) is
       Stop_State : Loop_Ctrl.Stop_State := Get_Stop_State (Manager.all);
    begin
-      if Stop_State.Should_Stop or Stop_State.Should_Stop_Immediate then
+      if Stop_State.Should_Stop or else Stop_State.Should_Stop_Immediate then
          Put_Line ("Bye");
       end if;
    end Print_Bye;
