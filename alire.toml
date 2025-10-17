@@ -1,6 +1,6 @@
 name = "swan"
 description = "Stuff We All Need - utilities collection for ada"
-version = "0.2.0"
+version = "0.1.0"
 
 authors = ["Matheus Xavier"]
 maintainers = ["Matheus Xavier <mxavierdev@gmail.com>"]
