@@ -77,6 +77,12 @@ package body Swan.Loop_Control is
         Nanoseconds (Sec_To_Ns (Manager.Target_DeltaT));
    begin
       Start_Time := Clock;
+
+      if not (Manager.Actions_Count > 0) then
+         raise Constraint_Error
+           with "No actions registered in the loop manager";
+      end if;
+
       Outer_Loop :
       loop
          End_Time := Clock;
