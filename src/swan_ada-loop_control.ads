@@ -3,6 +3,7 @@ with Swan_Ada.Frequency_Types; use Swan_Ada.Frequency_Types;
 generic
    Max_Actions : Integer := 10;
    type T_Dt is digits <>;
+   type T_User_State is private;
 package Swan_Ada.Loop_Control is
 
    type Loop_Manager is limited private;
@@ -31,13 +32,20 @@ package Swan_Ada.Loop_Control is
    procedure Set_Should_Stop_Immediate
      (Manager : in out Loop_Manager; Flag : Boolean);
 
+   procedure Set_User_State
+     (Manager : in out Loop_Manager; User_State : T_User_State);
+
    procedure Run_Loop (Manager : Loop_Manager_Access);
 
    function Action_Count (Manager : Loop_Manager) return Positive;
 
    function Get_Tick_Count (Manager : Loop_Manager) return Tick_Count;
 
-   function Get_Stop_state (Manager : Loop_Manager) return Stop_State;
+   function Get_Stop_State (Manager : Loop_Manager) return Stop_State;
+
+   function Get_User_State (Manager : Loop_Manager) return T_User_State;
+
+   function Get_Frequency (Manager : Loop_Manager) return Frequency_Hz;
 
 private
 
@@ -50,6 +58,7 @@ private
       Frequency                          : Frequency_Hz := 60.0;
       Target_DeltaT                      : Frequency_Sec := 1.0 / 60.0;
       Actions                            : Actions_List := (others => null);
+      User_state                         : T_User_State;
    end record;
 
 end Swan_Ada.Loop_Control;

@@ -42,11 +42,23 @@ package body Swan_Ada.Loop_Control is
       Manager.Should_stop_Immediate := Flag;
    end Set_Should_Stop_Immediate;
 
+   procedure Set_User_State
+     (Manager : in out Loop_Manager; User_State : T_User_State) is
+   begin
+      Manager.User_state := User_State;
+   end Set_User_State;
+
+   function Get_User_State (Manager : Loop_Manager) return T_User_State
+   is (Manager.User_state);
+
    function Action_Count (Manager : Loop_Manager) return Positive
    is (Manager.Actions_Count);
 
    function Get_Tick_Count (Manager : Loop_Manager) return Tick_Count
    is (Manager.Tick);
+
+   function Get_Frequency (Manager : Loop_Manager) return Frequency_Hz
+   is (Manager.Frequency);
 
    function Get_Stop_state (Manager : Loop_Manager) return Stop_State is
       State : Stop_State;

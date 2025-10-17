@@ -2,7 +2,8 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Swan_Ada.Loop_Control;
 
 procedure Example is
-   package Loop_Ctrl is new Swan_Ada.Loop_Control (T_DT => Float);
+   package Loop_Ctrl is new
+     Swan_Ada.Loop_Control (T_DT => Float, T_User_State => Integer);
    use Loop_Ctrl;
 
    procedure Print_DT (Dt : Float; Manager : Loop_Manager_Access) is
@@ -30,7 +31,6 @@ procedure Example is
    Lm : Loop_Manager_Access := new Loop_Ctrl.Loop_Manager;
 begin
 
-   Set_Frequency (Lm.all, 120.0);
    Add_Action (Lm.all, 0, Print_DT'Access);
    Add_Action (Lm.all, 1, Print_Bye'Access);
    Put_Line ("Starting loop");
