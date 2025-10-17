@@ -35,8 +35,26 @@ package body Swan_Ada.Loop_Control is
    begin
       Manager.Should_Stop := Flag;
    end Set_Should_Stop;
+
+   procedure Set_Should_Stop_Immediate
+     (Manager : in out Loop_Manager; Flag : Boolean) is
+   begin
+      Manager.Should_stop_Immediate := Flag;
+   end Set_Should_Stop_Immediate;
+
    function Action_Count (Manager : Loop_Manager) return Positive
    is (Manager.Actions_Count);
+
+   function Get_Tick_Count (Manager : Loop_Manager) return Tick_Count
+   is (Manager.Tick);
+
+   function Get_Stop_state (Manager : Loop_Manager) return Stop_State is
+      State : Stop_State;
+   begin
+      State.Should_stop := Manager.Should_Stop;
+      State.Should_stop_Immediate := Manager.Should_stop_Immediate;
+      return State;
+   end Get_Stop_state;
 
    procedure Run_Loop (Manager : Loop_Manager_Access) is
       Start_Time, End_Time : Time;
@@ -55,13 +73,18 @@ package body Swan_Ada.Loop_Control is
          end if;
 
          for I in Manager.Actions'Range loop
-            exit Outer_Loop when Manager.Should_Stop;
+            exit Outer_Loop when Manager.Should_stop_Immediate;
 
             Action := Manager.Actions (I);
-            Action.all (T_DT (Dt), Manager);
+            if Action /= null then
+               Action (T_Dt (Dt), Manager);
+            end if;
          end loop;
-         <<Skip_Cycle>>
+
+         Manager.Tick := Manager.Tick + 1;
+
          Start_Time := Clock;
+         <<Skip_Cycle>>
       end loop Outer_Loop;
 
    end Run_Loop;
