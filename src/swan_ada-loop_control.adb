@@ -63,8 +63,8 @@ package body Swan_Ada.Loop_Control is
    function Get_Stop_State (Manager : Loop_Manager) return Stop_State is
       State : Stop_State;
    begin
-      State.Should_stop := Manager.Should_Stop;
-      State.Should_stop_Immediate := Manager.Should_stop_Immediate;
+      State.Should_Stop := Manager.Should_Stop;
+      State.Should_Stop_Immediate := Manager.Should_stop_Immediate;
       return State;
    end Get_Stop_State;
 
@@ -73,7 +73,7 @@ package body Swan_Ada.Loop_Control is
       Dt                   : Time_Span;
       Dt_Duration          : Duration;
       Action               : Loop_Action;
-      Target_Span          : Time_Span :=
+      Target_Span          : constant Time_Span :=
         Nanoseconds (Sec_To_Ns (Manager.Target_DeltaT));
    begin
       Start_Time := Clock;
