@@ -1,4 +1,5 @@
-with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Text_IO;              use Ada.Text_IO;
+with Swan.Math_Util.Earth_Nav; use Swan.Math_Util.Earth_Nav;
 with Swan.Loop_Control;
 
 procedure Example is
@@ -28,11 +29,21 @@ procedure Example is
       end if;
    end Print_Bye;
 
-   Lm : Loop_Manager_Access := new Loop_Ctrl.Loop_Manager;
+   Lm   : Loop_Manager_Access := new Loop_Ctrl.Loop_Manager;
+   A, B : Coordinate_Pair;
 begin
+
+   A.Lat := 40.7486;
+   A.Lon := 10.9864;
+
+   B.Lat := 41.7486;
+   B.Lon := -72.9864;
+
+   Put_Line (Sphere_Circle_Distance (A, B)'Image);
 
    Add_Action (Lm.all, 0, Print_DT'Access);
    Add_Action (Lm.all, 1, Print_Bye'Access);
    Put_Line ("Starting loop");
+   Run_Loop (Lm);
    Run_Loop (Lm);
 end Example;

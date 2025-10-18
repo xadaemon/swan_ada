@@ -4,13 +4,13 @@ with Ada.Numerics.Complex_Arrays;
 use Ada.Numerics.Complex_Arrays;
 with Ada.Numerics.Complex_Elementary_Functions;
 use Ada.Numerics.Complex_Elementary_Functions;
-with Swan.Math_Util.Calculus;
-with Swan.Math_Util.FFT;
+with Swan.Math_Util.Generic_Calculus;
+with Swan.Math_Util.Generic_FFT;
 
 package body Swan.Math_Util.Test is
 
    procedure Arrange_Test is
-      package Float_Calculus is new Calculus (T_Float => Float);
+      package Float_Calculus is new Generic_Calculus (T_Float => Float);
       use Float_Calculus;
       Interval_Half      : constant Arrangement := Arrange (0.0, 10.0, 0.5);
       Interval_One       : constant Arrangement := Arrange (0.0, 10.0, 1.0);
@@ -30,7 +30,8 @@ package body Swan.Math_Util.Test is
       begin
          return (T - 4.0)**3 / 64.0 + 3.3;
       end Test_Func;
-      package Long_Float_Calculus is new Calculus (T_Float => Long_Float);
+      package Long_Float_Calculus is new
+        Generic_Calculus (T_Float => Long_Float);
       use Long_Float_Calculus;
       function Derive_Test_Func is new Derivative (Test_Func);
    begin
@@ -38,11 +39,11 @@ package body Swan.Math_Util.Test is
    end Calculus_Test;
 
    procedure FFT_Test is
-      package Float_Calculus is new Calculus (T_Float => Float);
+      package Float_Calculus is new Generic_Calculus (T_Float => Float);
       use Float_Calculus;
 
       package FFT_Instance is new
-        Swan.Math_Util.FFT (Ada.Numerics.Complex_Arrays);
+        Swan.Math_Util.Generic_FFT (Ada.Numerics.Complex_Arrays);
       use FFT_Instance;
 
       X           : Complex_Vector :=
