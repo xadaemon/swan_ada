@@ -20,6 +20,6 @@ package Swan.Math_Util.Generic_Nav is
 
    function Sphere_Circle_Distance (A, B : Coordinate_Pair) return T_Float;
 
-   function Midpoint (A, B : Coordinate_Pair) return T_Float;
+   function Midpoint (A, B : Coordinate_Pair) return Coordinate_Pair;
 
 end Swan.Math_Util.Generic_Nav;

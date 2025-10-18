@@ -14,9 +14,28 @@ package body Swan.Math_Util.Generic_Nav is
       return Mean_Radius * C;
    end Sphere_Circle_Distance;
 
-   function Midpoint (A, B : Coordinate_Pair) return T_Float is
+   function Midpoint (A, B : Coordinate_Pair) return Coordinate_Pair is
+      Psi_A                   : constant T_Float := Deg_To_Rad (A.Lat);
+      Psi_B                   : constant T_Float := Deg_To_Rad (B.Lat);
+      Lambda_A                : constant T_Float := Deg_To_Rad (A.Lon);
+      Lambda_B                : constant T_Float := Deg_To_Rad (B.Lon);
+      Bx, By, Psi_C, Lambda_C : T_Float;
+      Return_Pair             : Coordinate_Pair;
    begin
-      return 1.0;
+      Bx := Cos (Psi_B) * Cos (Lambda_B - Lambda_A);
+      By := Cos (Psi_B) * Sin (Lambda_B - Lambda_A);
+      declare
+         Int_A, Int_B : T_Float;
+      begin
+         Int_A := Sin (Psi_A) + Sin (Psi_B);
+         Int_B := Sqrt ((Cos (Psi_A) + Bx)**2 + By**2);
+         Psi_C := Arctan (Int_A, Int_B);
+      end;
+
+      Lambda_C := Lambda_A + Arctan (By, Cos (Psi_A) + Bx);
+      Return_Pair.Lat := Psi_C;
+      Return_Pair.Lon := Lambda_C;
+      return Return_Pair;
    end Midpoint;
 
 end Swan.Math_Util.Generic_Nav;
