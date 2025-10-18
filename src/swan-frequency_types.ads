@@ -4,6 +4,7 @@ package Swan.Frequency_Types is
    type Frequency_Sec is new Float;
 
    function Hz_To_Sec (Frequency : Frequency_Hz) return Frequency_Sec;
+
    function Sec_To_Hz (Frequency : Frequency_Sec) return Frequency_Hz;
 
    function Sec_To_Ns (Frequency : Frequency_Sec) return Integer;

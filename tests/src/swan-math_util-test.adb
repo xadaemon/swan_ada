@@ -1,5 +1,11 @@
-with AUnit.Assertions; use AUnit.Assertions;
+with AUnit.Assertions;                          use AUnit.Assertions;
+with Ada.Numerics.Complex_Types;                use Ada.Numerics.Complex_Types;
+with Ada.Numerics.Complex_Arrays;
+use Ada.Numerics.Complex_Arrays;
+with Ada.Numerics.Complex_Elementary_Functions;
+use Ada.Numerics.Complex_Elementary_Functions;
 with Swan.Math_Util.Calculus;
+with Swan.Math_Util.FFT;
 
 package body Swan.Math_Util.Test is
 
@@ -31,6 +37,27 @@ package body Swan.Math_Util.Test is
       Assert (Approximately_Equal (Derive_Test_Func (1.0), 0.421875), "");
    end Calculus_Test;
 
+   procedure FFT_Test is
+      package Float_Calculus is new Calculus (T_Float => Float);
+      use Float_Calculus;
+
+      package FFT_Instance is new
+        Swan.Math_Util.FFT (Ada.Numerics.Complex_Arrays);
+      use FFT_Instance;
+
+      X           : Complex_Vector :=
+        (1 .. 4 => (1.0, 0.0), 5 .. 8 => (0.0, 0.0));
+      Transformed : Complex_Vector := Fourier_Transform (X);
+   begin
+      Assert
+        (Transformed (Transformed'First) = Complex'(4.0, 0.0),
+         "First item is transformed correctly");
+      Assert
+        (Transformed (Transformed'Last).Re = 1.0
+         and then Approximately_Equal (Complex'(1.0, 2.414).Im, 2.414),
+         "Last item is transformed correctly");
+   end FFT_Test;
+
    overriding
    function Name (T : Test) return AUnit.Message_String is
       pragma Unreferenced (T);
@@ -43,6 +70,7 @@ package body Swan.Math_Util.Test is
    begin
       Arrange_Test;
       Calculus_Test;
+      FFT_Test;
    end Run_Test;
 
 end Swan.Math_Util.Test;
