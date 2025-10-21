@@ -22,24 +22,31 @@ procedure Example is
    end Print_DT;
 
    procedure Print_Bye (Dt : Float; Manager : Loop_Manager_Access) is
-      Stop_State : Loop_Ctrl.Stop_State := Get_Stop_State (Manager.all);
+      Stop_State : constant Loop_Ctrl.Stop_State :=
+        Get_Stop_State (Manager.all);
    begin
       if Stop_State.Should_Stop or else Stop_State.Should_Stop_Immediate then
          Put_Line ("Bye");
       end if;
    end Print_Bye;
 
-   Lm   : Loop_Manager_Access := new Loop_Ctrl.Loop_Manager;
-   A, B : Coordinate_Pair;
+   Lm              : Loop_Manager_Access := new Loop_Ctrl.Loop_Manager;
+   A, B, Mid, Dest : Cartesian_Coordinate;
 begin
 
-   A.Lat := 40.7486;
-   A.Lon := 10.9864;
+   A.Lat := 35.0;
+   A.Lon := 45.0;
 
-   B.Lat := 41.7486;
-   B.Lon := -72.9864;
+   B.Lat := 35.0;
+   B.Lon := 135.0;
 
-   Put_Line (Sphere_Circle_Distance (A, B)'Image);
+   Put_Line ("Sphere distance: " & Sphere_Circle_Distance (A, B)'Image);
+
+   Mid := Midpoint (A, B);
+   Dest := Track_Destination (A, 256.0, 1800.0);
+   Put_Line ("Midpoint is Lat: " & Mid.Lat'Image & " Lon: " & Mid.Lon'Image);
+   Put_Line
+     ("Track endpoint, Lat: " & Dest.Lat'Image & " Lon: " & Dest.Lon'Image);
 
    Add_Action (Lm.all, 0, Print_DT'Access);
    Add_Action (Lm.all, 1, Print_Bye'Access);

@@ -4,7 +4,7 @@ with Swan.Math_Util.Generic_Trig;
 
 generic
    type T_Float is digits <>;
-   Mean_Radius, Semi_Major, Semi_Minor, Flattening : T_Float;
+   Mean_Radius : T_Float;
 package Swan.Math_Util.Generic_Nav is
 
    package Elementary_Functions is new
@@ -14,12 +14,13 @@ package Swan.Math_Util.Generic_Nav is
    package Trig is new Swan.Math_Util.Generic_Trig (T_Float);
    use Trig;
 
-   type Coordinate_Pair is record
+   type Cartesian_Coordinate is record
       Lat, Lon : T_Float;
    end record;
 
-   function Sphere_Circle_Distance (A, B : Coordinate_Pair) return T_Float;
+   function Sphere_Circle_Distance
+     (A, B : Cartesian_Coordinate) return T_Float;
 
-   function Midpoint (A, B : Coordinate_Pair) return Coordinate_Pair;
+   function Midpoint (A, B : Cartesian_Coordinate) return Cartesian_Coordinate;
 
 end Swan.Math_Util.Generic_Nav;
