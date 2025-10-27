@@ -45,7 +45,6 @@ begin
    Mid := Midpoint (A, B);
    Put_Line ("Midpoint is Lat: " & Mid.Lat'Image & " Lon: " & Mid.Lon'Image);
 
-   Set_Frequency (Lm.all, 200.0);
    Add_Action (Lm.all, 0, Print_DT'Access);
    Add_Action (Lm.all, 1, Print_Bye'Access);
    Put_Line ("Starting loop");

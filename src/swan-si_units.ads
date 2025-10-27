@@ -27,9 +27,11 @@ package Swan.SI_Units is
       Milli,
       Centi,
       Deci);
-   -- SI prefixes for conversion
+   --  SI prefixes for conversion
 
-   SI_Prefix_Value : constant array (SI_Prefix) of Float :=
+   subtype Prefix is Float;
+
+   SI_Prefix_Value : constant array (SI_Prefix) of Prefix :=
      (Base   => 1.0,
       Quetta => 10.0e30,
       Ronna  => 10.0e27,
