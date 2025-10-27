@@ -1,5 +1,3 @@
-with Ada.Real_Time; use Ada.Real_Time;
-
 package body Swan.Loop_Control is
 
    procedure Set_Frequency
@@ -8,6 +6,16 @@ package body Swan.Loop_Control is
       Manager.Frequency := Frequency;
       Manager.Target_DeltaT := Hz_To_Sec (Frequency);
    end Set_Frequency;
+
+   procedure Setup_Deviation_Warning
+     (Manager                       : in out Loop_Manager;
+      Threshold, Critical_Threshold : Time_Span;
+      Callback                      : Deviation_Callback) is
+   begin
+      Manager.Acceptable_Deviation := Threshold;
+      Manager.Critical_Threshold := Critical_Threshold;
+      Manager.Deviation_Handler := Callback;
+   end Setup_Deviation_Warning;
 
    procedure Add_Action
      (Manager : in out Loop_Manager; Ordering : Integer; Action : Loop_Action)
@@ -89,6 +97,19 @@ package body Swan.Loop_Control is
          Dt := End_Time - Start_Time;
          Dt_Duration := To_Duration (Dt);
          exit Outer_Loop when Manager.Should_Stop;
+
+         if Dt > Manager.Critical_Threshold then
+            raise Deviated_Over_Critical_Threshold
+              with
+                "Delta "
+                & Dt_Duration'Image
+                & " is over the allowable "
+                & To_Duration (Manager.Critical_Threshold)'Image;
+         elsif Dt > Manager.Acceptable_Deviation
+           and then Manager.Deviation_Handler /= null
+         then
+            Manager.Deviation_Handler (T_Dt (Dt_Duration), Manager);
+         end if;
 
          if Dt < Target_Span then
             goto Skip_Cycle;

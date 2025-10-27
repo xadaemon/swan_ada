@@ -30,8 +30,8 @@ procedure Example is
       end if;
    end Print_Bye;
 
-   Lm              : Loop_Manager_Access := new Loop_Ctrl.Loop_Manager;
-   A, B, Mid, Dest : Cartesian_Coordinate;
+   Lm        : Loop_Manager_Access := new Loop_Ctrl.Loop_Manager;
+   A, B, Mid : Cartesian_Coordinate;
 begin
 
    A.Lat := 35.0;
@@ -43,14 +43,11 @@ begin
    Put_Line ("Sphere distance: " & Sphere_Circle_Distance (A, B)'Image);
 
    Mid := Midpoint (A, B);
-   Dest := Track_Destination (A, 256.0, 1800.0);
    Put_Line ("Midpoint is Lat: " & Mid.Lat'Image & " Lon: " & Mid.Lon'Image);
-   Put_Line
-     ("Track endpoint, Lat: " & Dest.Lat'Image & " Lon: " & Dest.Lon'Image);
 
+   Set_Frequency (Lm.all, 200.0);
    Add_Action (Lm.all, 0, Print_DT'Access);
    Add_Action (Lm.all, 1, Print_Bye'Access);
    Put_Line ("Starting loop");
-   Run_Loop (Lm);
    Run_Loop (Lm);
 end Example;
