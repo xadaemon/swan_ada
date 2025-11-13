@@ -23,7 +23,7 @@ package body Swan.Math_Util.Generic_FFT is
          declare
             Half_N : constant Positive := N / 2;
             F      : constant Complex :=
-              exp (Pi * j / Real_Arrays.Real (Half_N));
+              Exp (Pi * j / Real_Arrays.Real (Half_N));
             Even   : Complex_Vector := FFT_Cycle (X, Half_N, 2 * S);
             Odd    : Complex_Vector :=
               FFT_Cycle (X (X'First + S .. X'Last), Half_N, 2 * S);
